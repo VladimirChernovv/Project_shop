@@ -1,15 +1,15 @@
 import {GoodsItem} from './GoodsItem';
 
 function GoodsList(props) {
-  const {goods = []} = props;
+  const {goods = [], addToBasket = Function.prototype} = props;
 
   if (!goods.length) {
     return <h3>There is nothing here.</h3>
   };
 
   return <div className="goods">
-    {goods.map(item => (
-      <GoodsItem key={item.id} {...item} />
+    {goods.map((item) => (
+      <GoodsItem key={item.mainId} {...item} addToBasket={addToBasket} />
     ))}
   </div>
 };
