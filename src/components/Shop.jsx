@@ -5,6 +5,7 @@ import {Preloader} from './Preloader';
 import {GoodsList} from './GoodsList';
 import {Cart} from './Cart';
 import {BasketList} from './BasketList';
+import {Alert} from './Alert';
 
 function Shop() {
   const [goods, setGoods] = useState([]);
@@ -13,6 +14,7 @@ function Shop() {
   // Состояние отвечающее за
   // то видим ли мы сейчас коризину или нет
   const [isBasketShow, setBasketShow] = useState(false);
+  const [alertName, setAlertName] = useState('');
 
   const addToBasket = (item) => {
     // Из item получаем объект с id, названием и ценой.
@@ -37,9 +39,9 @@ function Shop() {
           return orderItem; // Должен быть orderItem
         }
       });
-
       setOrder(newOrder);
     };
+    setAlertName(item.displayName);
   };
 
   // Функция удаления товара из корзины
@@ -89,6 +91,10 @@ function Shop() {
     setBasketShow(!isBasketShow);
   };
 
+  const closeAlert = () => {
+    setAlertName('')
+  };
+
   useEffect(function getGoods() {
     fetch(API_URL, {
       // Массив опция для того чтоб мы
@@ -123,6 +129,9 @@ function Shop() {
           decrementQuantity={decrementQuantity}
         />
       )}
+      {
+        alertName && <Alert displayName={alertName} closeAlert={closeAlert} />
+      }
     </main>
   );
 };
