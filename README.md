@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# React shop Portfolio project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Demo-Project_shop](https://VladimirChernovv.github.io/Project_shop).
 
 ## Available Scripts
 
