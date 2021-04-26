@@ -3,7 +3,9 @@ import {BasketItem} from './BasketItem';
 function BasketList(props) {
   const {order = [],
       handleBasketShow = Function.prototype,
-      removeFromBasket = Function.prototype
+      removeFromBasket = Function.prototype,
+      incrementQuantity,
+      decrementQuantity,
   } = props;
 
   const totalPrice = order.reduce((sum, el) => {
@@ -18,6 +20,8 @@ function BasketList(props) {
           <BasketItem
             key={item.mainId}
             removeFromBasket={removeFromBasket}
+            incrementQuantity={incrementQuantity}
+            decrementQuantity={decrementQuantity}
             {...item}
           />
         ))

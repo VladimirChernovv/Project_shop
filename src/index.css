@@ -84,3 +84,9 @@ nav {
     opacity: 1;
   }
 }
+
+.basket-quantity {
+  vertical-align: middle;
+  color: #ef6c00;
+  cursor: pointer;
+}

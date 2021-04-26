@@ -48,6 +48,42 @@ function Shop() {
     setOrder(newOrder);
   };
 
+  // Функция добавления количества конкретного
+  // товара в корзине
+  const incrementQuantity = (itemId) => {
+    const newOrder = order.map(el => {
+      if (el.mainId === itemId) {
+        const newQuantity = el.quantity + 1;
+
+        return {
+          ...el,
+          quantity: newQuantity,
+        };
+      } else {
+        return el;
+      };
+    });
+    setOrder(newOrder);
+  };
+
+  // Функция удаления количества конкретного
+  // товара в корзине
+  const decrementQuantity = (itemId) => {
+    const newOrder = order.map((el) => {
+      if (el.mainId === itemId) {
+        const newQuantity = el.quantity - 1;
+
+        return {
+          ...el,
+          quantity: newQuantity >= 0 ? newQuantity : 0,
+        };
+      } else {
+        return el;
+      };
+    });
+    setOrder(newOrder);
+  };
+
   // Функция управляющая состоянием показа
   const handleBasketShow = () => {
     setBasketShow(!isBasketShow);
@@ -83,6 +119,8 @@ function Shop() {
           order={order}
           handleBasketShow={handleBasketShow}
           removeFromBasket={removeFromBasket}
+          incrementQuantity={incrementQuantity}
+          decrementQuantity={decrementQuantity}
         />
       )}
     </main>
