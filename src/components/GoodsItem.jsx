@@ -9,7 +9,7 @@ function GoodsItem(props) {
   } = props;
 
   return (
-    <div className="card" >
+    <div className="card">
       <div className="card-image">
         <img src={displayAssets[0].url} alt={displayName} />
       </div>

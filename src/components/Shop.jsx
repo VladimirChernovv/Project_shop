@@ -42,6 +42,12 @@ function Shop() {
     };
   };
 
+  // Функция удаления товара из корзины
+  const removeFromBasket = (itemId) => {
+    const newOrder = order.filter(el => el.mainId !== itemId)
+    setOrder(newOrder);
+  };
+
   // Функция управляющая состоянием показа
   const handleBasketShow = () => {
     setBasketShow(!isBasketShow);
@@ -72,7 +78,13 @@ function Shop() {
       ) : (
         <GoodsList goods={goods} addToBasket={addToBasket} />
       )}
-      {isBasketShow && <BasketList order={order} handleBasketShow={handleBasketShow} />}
+      {isBasketShow && (
+        <BasketList
+          order={order}
+          handleBasketShow={handleBasketShow}
+          removeFromBasket={removeFromBasket}
+        />
+      )}
     </main>
   );
 };
