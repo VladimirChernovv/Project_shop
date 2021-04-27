@@ -14,15 +14,33 @@ const initialState = {
 };
 
 export const ContextProvider = ({children}) => {
-   const [value, dispatch] = useReducer(reducer, initialState);
+  const [value, dispatch] = useReducer(reducer, initialState);
 
-   value.closeAlert = () => {
-     dispatch({type: 'CLOSE_ALERT'})
-   };
+  value.closeAlert = () => {
+    dispatch({type: 'CLOSE_ALERT'})
+  };
 
-   value.removeFromBasket = (itemId) => {
-     dispatch({type: 'REMOVE_FROM_BASKET', payload: {id: itemId}});
-   };
+  value.addToBasket = (item) => {
+    dispatch({type: 'ADD_TO_BASKET', payload: item})
+  };
+
+  // Увеличиваем количество
+  value.incQuantity = (itemId) => {
+    dispatch({type: 'INCREMENT_QUANTITY', payload: {id: itemId}});
+  };
+
+  // Уменьшаем количество
+  value.decQuantity = (itemId) => {
+    dispatch({type: 'DECREMENT_QUANTITY', payload: {id: itemId}});
+  };
+
+  value.removeFromBasket = (itemId) => {
+    dispatch({type: 'REMOVE_FROM_BASKET', payload: {id: itemId}});
+  };
+
+  value.handleBasketShow = () => {
+    dispatch({type: 'TOGGLE_BASKET'})
+  }
 
   // const value = {
   //   exemple: 'hello from context',
