@@ -1,5 +1,11 @@
 export function reducer(state, {type, payload}) {
   switch (type) {
+    case 'SET_GOODS':
+      return {
+        ...state,
+        goods: payload || [],
+        loading: false,
+      };
     case 'ADD_TO_BASKET': {
       const itemIndex = state.order.findIndex(
         (orderItem) => orderItem.mainId === payload.mainId
@@ -25,7 +31,6 @@ export function reducer(state, {type, payload}) {
           }
         });
       };
-      setAlertName(item.displayName);
 
       return {
         ...state,
@@ -36,14 +41,14 @@ export function reducer(state, {type, payload}) {
     case 'REMOVE_FROM_BASKET':
       return {
         ...state,
-        order: state.order.filter(el => el.mainId !== payload.id),
+        order: state.order.filter(el => el.mainId !== payload.mainId),
       };
     case 'INCREMENT_QUANTITY':
       return {
         ...state,
         // Формируем новый массив и новый массив сохраним в ключ order
         order: state.order.map(el => {
-          if (el.mainId === payload.id) {
+          if (el.mainId === payload.mainId) {
             const newQuantity = el.quantity + 1;
     
             return {
@@ -59,7 +64,7 @@ export function reducer(state, {type, payload}) {
       return {
         ...state,
         order: state.order.map((el) => {
-          if (el.mainId === payload.id) {
+          if (el.mainId === payload.mainId) {
             const newQuantity = el.quantity - 1;
     
             return {

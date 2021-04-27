@@ -26,25 +26,25 @@ export const ContextProvider = ({children}) => {
 
   // Увеличиваем количество
   value.incQuantity = (itemId) => {
-    dispatch({type: 'INCREMENT_QUANTITY', payload: {id: itemId}});
+    dispatch({type: 'INCREMENT_QUANTITY', payload: {mainId: itemId}});
   };
 
   // Уменьшаем количество
   value.decQuantity = (itemId) => {
-    dispatch({type: 'DECREMENT_QUANTITY', payload: {id: itemId}});
+    dispatch({type: 'DECREMENT_QUANTITY', payload: {mainId: itemId}});
   };
 
   value.removeFromBasket = (itemId) => {
-    dispatch({type: 'REMOVE_FROM_BASKET', payload: {id: itemId}});
+    dispatch({type: 'REMOVE_FROM_BASKET', payload: {mainId: itemId}});
   };
 
   value.handleBasketShow = () => {
     dispatch({type: 'TOGGLE_BASKET'})
-  }
+  };
 
-  // const value = {
-  //   exemple: 'hello from context',
-  // };
+  value.setGoods = (data) => {
+    dispatch({type: 'SET_GOODS', payload: data})
+  };
 
   return (
     <ShopContext.Provider value={value}>
